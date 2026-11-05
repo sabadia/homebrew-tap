@@ -1,6 +1,6 @@
 cask "dlm-app" do
-  version "0.4.0"
-  sha256 "e8c6f2fcc2ad7fbaf6be5216c83208d105dcc5cb2d89caef1d480dc432591021"
+  version "0.4.1"
+  sha256 "90f05afb1a51908ef756116109e3b6ddecb537456d2eaaa2e0d3a85c59825d72"
 
   url "https://github.com/sabadia/dlm-app/releases/download/v#{version}/DLM_#{version}.dmg"
   name "DLM"
