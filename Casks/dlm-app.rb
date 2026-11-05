@@ -1,6 +1,6 @@
 cask "dlm-app" do
-  version "0.2.1"
-  sha256 "c5b41fc40910546b06f92309d2b3e297cc9aa933d68fab2631382fd10e72c65e"
+  version "0.3.0"
+  sha256 "689cc4b7ea462c631b5d53b74c28aa765516b7ab1c9c7a0e3dd4813bd1a30d57"
 
   url "https://github.com/sabadia/dlm-app/releases/download/v#{version}/DLM_#{version}.dmg"
   name "DLM"
@@ -16,15 +16,19 @@ cask "dlm-app" do
 
   app "DLM.app"
 
-  uninstall quit: "io.github.sabadia.dlm"
+  # The registrations point into the app, so they go with it (not only with
+  # `--zap`): a browser must not keep starting a helper that is gone.
+  uninstall quit:   "io.github.sabadia.dlm",
+            delete: [
+              "~/Library/Application Support/BraveSoftware/Brave-Browser/NativeMessagingHosts/dev.sabadia.dlm.json",
+              "~/Library/Application Support/Chromium/NativeMessagingHosts/dev.sabadia.dlm.json",
+              "~/Library/Application Support/Google/Chrome/NativeMessagingHosts/dev.sabadia.dlm.json",
+              "~/Library/Application Support/Microsoft Edge/NativeMessagingHosts/dev.sabadia.dlm.json",
+              "~/Library/Application Support/Mozilla/NativeMessagingHosts/dev.sabadia.dlm.json",
+            ]
 
   zap trash: [
-    "~/Library/Application Support/BraveSoftware/Brave-Browser/NativeMessagingHosts/dev.sabadia.dlm.json",
-    "~/Library/Application Support/Chromium/NativeMessagingHosts/dev.sabadia.dlm.json",
     "~/Library/Application Support/dlm",
-    "~/Library/Application Support/Google/Chrome/NativeMessagingHosts/dev.sabadia.dlm.json",
-    "~/Library/Application Support/Microsoft Edge/NativeMessagingHosts/dev.sabadia.dlm.json",
-    "~/Library/Application Support/Mozilla/NativeMessagingHosts/dev.sabadia.dlm.json",
     "~/Library/Caches/io.github.sabadia.dlm",
     "~/Library/Preferences/io.github.sabadia.dlm.plist",
     "~/Library/Saved Application State/io.github.sabadia.dlm.savedState",
